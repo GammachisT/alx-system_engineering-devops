@@ -41,11 +41,11 @@ frontend gadaservices-frontend
         default_backend gadaservices-backend
 
 frontend gadaservices-frontend-https
-        bind *:443 ssl crt /etc/haproxy/certs/gadaservices.tech.pem
+        bind *:443 ssl crt /etc/letsencrypt/live/www.gadaservices.tech/fullchain.pem
         http-request set-header X-Forwarded-Proto https
         default_backend gadaservices-backend
 
-backend gadaservices-backend
-        balance roundrobin
-        server 447146-web-01 18.208.120.31:80 check
-        server 447146-web-02 100.25.135.106:80 check
+backend gadaservices-tech-backend
+    balance roundrobin
+    server 447146-web-01 18.208.120.31:80 check
+    server 447146-web-02 100.25.135.106:80 check
