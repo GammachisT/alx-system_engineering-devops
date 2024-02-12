@@ -1,0 +1,30 @@
+# To setup port forwarding follow these steps
+
+# first connect to your web-01 server
+
+sudo vi /etc/ufw/sysctl.conf
+
+# uncommenting
+net/ipv4/ip_forward=1
+
+sudo sysctl -p
+sudo ufw allow 8080/tcp
+sudo ufw status
+sudo vi /etc/ufw/before.rules
+
+# add the following script after the first six line commits
+
+*nat
+:PREROUTING ACCEPT [0:0]
+-A PREROUTING -p tcp --dport 8080 -j REDIRECT --to-port 80
+COMMIT
+
+sudo ufw disable
+sudo ufw status
+sudo ufw enable
+
+
+# remember 
+# you should also do these steps for both web_02 and lb_01
+# Finally you copy </etc/ufw/before.rules> file to 100-port_forwarding file and save it.
+
