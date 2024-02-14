@@ -1,0 +1,1 @@
+# Installn mysql on server
