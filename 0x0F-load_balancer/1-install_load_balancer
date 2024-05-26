@@ -34,23 +34,19 @@ defaults
   timeout server 15s
   timeout http-request 10s
 
-frontend clickviral-tech-frontend
+frontend gadaservices-tech-frontend
     bind *:80
-    default_backend clickviral-tech-backend
+    default_backend gadaservices-tech-backend
 
-backend clickviral-tech-backend
+backend gadaservices-tech-backend
     balance roundrobin
     server 447146-web-01 52.87.155.38:80 check
-    server 447146-web-02 35.175.130.55:80 check
+    server 447146-we b-02 35.175.130.55:80 check
 "
 
 # shellcheck disable=SC2154
 echo "$server_config" | sudo dd status=none of=/etc/haproxy/haproxy.cfg
 
-# enable haproxy to be started by init script
-echo "ENABLED=1" | sudo dd status=none of=/etc/default/haproxy
-
-echo "configured - Roundrobin On web-01 & web-02"
 
 if [ "$(pgrep -c haproxy)" -le 0 ]; then
 	sudo service haproxy start
