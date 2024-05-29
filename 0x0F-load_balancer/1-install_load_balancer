@@ -40,7 +40,7 @@ frontend gadaservices-tech-frontend
 
 backend gadaservices-tech-backend
     balance roundrobin
-    server 447146-web-01 52.87.155.38:80 check
+    server 447146-web-01 54.157.172.207:80 check
     server 447146-web-02 35.175.130.55:80 check
 "
 
