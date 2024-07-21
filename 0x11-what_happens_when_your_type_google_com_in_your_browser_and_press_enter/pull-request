@@ -1,0 +1,33 @@
+# To make a clean pull request follow the following steps
+
+1. fork the repo you want to contribute to
+
+2. clone the forked repo
+	git clone  github/your-user/liked-to-forked-repo
+
+3. open terminal into repo directory in your local machine
+	cd repoName
+
+4. check you remote origin
+	git remote -v
+
+5. add your forked repo as origin and add the original repository link as upstream
+
+	git remote add origin url-to-forked-repo
+
+	git remote add upstream url-to-original-repo.
+	
+	and check the two remotes again with  git remote -v
+
+6. Create a new branch
+	git checkout -b BRANCH_NAME
+
+7. commit and push to your branch
+	git push origin BRANCH_NAME
+
+8. go to forked repo to and you will see pull requests button click on it to begin pull to the original repo
+
+9. Create the pull request.
+
+Then, go to the original repo and complete pull request
+"that means the repo you have been forked before."
