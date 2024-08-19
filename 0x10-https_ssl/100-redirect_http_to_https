@@ -41,7 +41,7 @@ frontend gadaservices-tech-frontend
         default_backend gadaservices-tech-backend
 
 frontend gadaservices-frontend-https
-        bind *:443 ssl crt /etc/haproxy/certs/gadaservices.tech.pem
+        bind *:443 ssl crt /etc/letsencrypt/live/www.gadaservices.tech/gadaservices.pem
         http-request set-header X-Forwarded-Proto https
         default_backend gadaservices-tech-backend
 
