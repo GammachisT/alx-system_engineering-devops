@@ -13,7 +13,7 @@ global
         crt-base /etc/ssl/private
 
         # See: https://ssl-config.mozilla.org/#server=haproxy&server-version=2.0.3&config=intermediate
-        ssl-default-bind-ciphers ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-S>
+        ssl-default-bind-ciphers ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-CHACHA20-POLY1305:ECDHE-RSA-CHACHA20-POLY1305:DHE-RSA-AES128-GCM-SHA256:DHE-RSA-AES256-GCM-SHA384
         ssl-default-bind-ciphersuites TLS_AES_128_GCM_SHA256:TLS_AES_256_GCM_SHA384:TLS_CHACHA20_POLY1305_SHA256
         ssl-default-bind-options ssl-min-ver TLSv1.2 no-tls-tickets
 
@@ -33,19 +33,19 @@ defaults
         errorfile 503 /etc/haproxy/errors/503.http
         errorfile 504 /etc/haproxy/errors/504.http
 
-frontend gadaservices-frontend
+frontend gadaservices-tech-frontend
         bind *:80
         mode http
         http-request redirect scheme https code 301 unless { ssl_fc }
         http-request set-header X_Forwarded-Proto http
-        default_backend gadaservices-backend
+        default_backend gadaservices-tech-backend
 
 frontend gadaservices-frontend-https
-        bind *:443 ssl crt /etc/letsencrypt/live/www.gadaservices.tech/fullchain.pem
+        bind *:443 ssl crt /etc/letsencrypt/live/www.gadaservices.tech/gadaservices.pem
         http-request set-header X-Forwarded-Proto https
-        default_backend gadaservices-backend
+        default_backend gadaservices-tech-backend
 
 backend gadaservices-tech-backend
-    balance roundrobin
-    server 447146-web-01 18.208.120.31:80 check
-    server 447146-web-02 100.25.135.106:80 check
+        balance roundrobin
+        server 447146-web-01 18.204.13.190:80 check
+        server 447146-web-02 54.165.75.49:80 check

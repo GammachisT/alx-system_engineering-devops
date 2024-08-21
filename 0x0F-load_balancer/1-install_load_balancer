@@ -40,8 +40,8 @@ frontend gadaservices-tech-frontend
 
 backend gadaservices-tech-backend
     balance roundrobin
-    server 447146-web-01 100.26.161.44:80 check
-    server 447146-web-02 54.210.60.72:80 check
+    server 447146-web-01 18.204.13.190:80 check
+    server 447146-web-02 54.165.75.49:80 check
 "
 
 # shellcheck disable=SC2154
